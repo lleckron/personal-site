@@ -7,10 +7,33 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      colors: {
+        'off-white': '#F9F9F9',
+        'rust-red': '#AA2704'
+      },
+      height: {
+        'full-minus-nav': 'calc(100% - 48px)'
+      },
+      keyframes: {
+        cloudy_effect: {
+          '0%': {
+            opacity: 0,
+            transform: 'scale(1)',
+          },
+          '25%, 75%': {
+            opacity: 1,
+          },
+          '100%': {
+            transform: 'scale(2)',
+            opacity: 0,
+          },
+        },
+      },
+      animation: {
+        'cloudy-one': 'cloudy_effect 5s ease-in infinite',
+        'cloudy-two': 'cloudy_effect 10s ease-in infinite',
+        'cloudy-three': 'cloudy_effect 15s ease-in infinite',
+        'cloudy-four': 'cloudy_effect 20s ease-in infinite',
       },
     },
   },
