@@ -9,7 +9,10 @@ module.exports = {
     extend: {
       colors: {
         'off-white': '#F9F9F9',
-        'rust-red': '#AA2704'
+        'dark-gray': '#191919',
+        'gray': '#343434',
+        'menu-gray': '#4F4F4F',
+        'hover-gray': '#676767'
       },
       height: {
         'full-minus-nav': 'calc(100% - 48px)'

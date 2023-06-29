@@ -10,9 +10,9 @@
 body {
   width: 100vw;
   height: 100vh;
-  background: #87CEEB;
+  background: #191919;
 }
 
 .text-shadow {
-  text-shadow: 0 0 5px #191919;
+  text-shadow: 0 0 1px #e9e9e9;
 }
