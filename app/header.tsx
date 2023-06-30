@@ -13,7 +13,6 @@ export default function Header( props: HeaderProps ) {
 
   function toggleMenuModal() {
     setShowMenuModal(!showMenuModal)
-    console.log(showMenuModal)
   }
 
   return (

@@ -1,5 +1,6 @@
 'use client'
 import { motion as m, AnimatePresence } from "framer-motion"
+import Link from "next/link"
 
 type MenuModalProps = {
   showMenuModal: boolean
@@ -18,11 +19,13 @@ export default function MenuModal( props: MenuModalProps ) {
 
   function handleModalClick(target: string) {
     console.log(target)
+    setShowMenuModal(false)
   }
 
   function handleModalKeypress(target: string, key: string) {
     console.log(target)
     console.log(key)
+    setShowMenuModal(false)
   }
 
   return (
@@ -34,7 +37,7 @@ export default function MenuModal( props: MenuModalProps ) {
       className="flex justify-center items-center absolute left-[85%] w-10 h-10 mt-[6px] bg-gray text-white text-2xl text-center font-bold rounded-full hover:cursor-pointer"
       key="close-div"
       onClick={() => setShowMenuModal(false)}
-      onKeyPress={(event) => {event.key === 'Enter' && setShowMenuModal(false)}}
+      onKeyPress={(event) => { event.key === 'Enter' && setShowMenuModal(false) }}
       tabIndex={0}>
         X
       </m.div>
@@ -43,32 +46,36 @@ export default function MenuModal( props: MenuModalProps ) {
       key="menu-ul"
       className='flex flex-col w-full mt-12'
       tabIndex={-1}>
-        <li 
-        className='flex justify-center items-center w-full h-14 text-center text-white hover:cursor-pointer hover:bg-hover-gray hover:font-bold'
-        key="li-one"
-        tabIndex={0}
-        onClick={() => handleModalClick('home')}>
-          HOME
-        </li>
-        <li 
-        className='flex justify-center items-center w-full h-14 text-center text-white hover:cursor-pointer hover:bg-hover-gray hover:font-bold'
-        key="li-two"
-        tabIndex={0}
-        onClick={() => handleModalClick('tools')}>
-          PORTFOLIO - TOOLS
-        </li>
+        <Link href="/">
+          <li 
+          className='flex justify-center items-center w-full h-14 text-center text-white hover:cursor-pointer hover:bg-hover-gray hover:font-bold'
+          key="li-one"
+          tabIndex={0}
+          onClick={ () => handleModalClick('home') }>
+            HOME
+          </li>
+        </Link>
+        <Link href="/tools">
+          <li 
+          className='flex justify-center items-center w-full h-14 text-center text-white hover:cursor-pointer hover:bg-hover-gray hover:font-bold'
+          key="li-two"
+          tabIndex={0}
+          onClick={ () => handleModalClick('tools') }>
+            PORTFOLIO - TOOLS
+          </li>
+        </Link>
         <li 
         className='flex justify-center items-center w-full h-14 text-center text-white hover:cursor-pointer hover:bg-hover-gray hover:font-bold'
         key="li-three"
         tabIndex={0}
-        onClick={() => handleModalClick('projects')}>
+        onClick={ () => handleModalClick('projects') }>
           PORTFOLIO - PROJECTS
         </li>
         <li 
         className='flex justify-center items-center w-full h-14 text-center text-white hover:cursor-pointer hover:bg-hover-gray hover:font-bold'
         key="li-four"
         tabIndex={0}
-        onClick={() => handleModalClick('contact')}>
+        onClick={ () => handleModalClick('contact') }>
           CONTACT ME
         </li>
       </m.ul>

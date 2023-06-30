@@ -1,5 +1,10 @@
+'use client'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import React, { useState } from 'react'
+import MenuModal from './menu-modal'
+import { AnimatePresence } from "framer-motion"
+import Header from './header'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,9 +18,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+  const [showMenuModal, setShowMenuModal] = useState(false)
+
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Header showMenuModal={ showMenuModal } setShowMenuModal={ setShowMenuModal }/>
+        {children}
+        <AnimatePresence>
+          {showMenuModal && <MenuModal showMenuModal={ showMenuModal } setShowMenuModal={ setShowMenuModal }/>}
+        </AnimatePresence>
+      </body>
     </html>
   )
 }
