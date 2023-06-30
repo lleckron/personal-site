@@ -22,7 +22,8 @@ export default function Header( props: HeaderProps ) {
         <div className="flex h-full w-5">
           <button 
           className="flex flex-col justify-center items-center relative w-full [&>*:nth-child(2)]:mt-1 [&>*:nth-child(2)]:mb-1"
-          onClick={() => toggleMenuModal()}>
+          onClick={() => toggleMenuModal()}
+          name='menu'>
             <span className="bg-black w-full h-[3px] rounded-sm"></span>
             <span className="bg-black w-full h-[3px] rounded-sm"></span>
             <span className="bg-black w-full h-[3px] rounded-sm"></span>
