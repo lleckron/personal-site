@@ -2,7 +2,7 @@
 import React from "react"
 import Image from "next/image"
 import Headshot from "../public/headshot.png"
-import Github from '../public/github-white.png'
+import Github from '../public/github-black.png'
 import LinkedIn from '../public/linkedin-black.png'
 
 
