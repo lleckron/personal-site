@@ -13,14 +13,14 @@ export default function Introduction() {
       <div className="flex flex-col justify-center items-center w-1/2">
         <div className="flex flex-col text-center mb-6">
           <p className="text-white text-3xl md:text-6xl font-bold mb-3 text-shadow">Luke Leckron</p>
-          <p className="text-white text-md md:text-2xl text-shadow">Front End Web Developer &amp; Web Designer</p>
+          <p className="text-white text-md md:text-2xl text-shadow"> Web Developer &amp; Designer</p>
         </div>
         <div className="flex flex-row justify-center items-center w-full">
           <button className="flex justify-center items-center h-12 w-12 mr-8 bg-off-white rounded-full border-gray border-1 hover:scale-125 hover:duration-150">
-              <Image className="w-8 h-8" src={Github} alt="twitter" priority={true} />
+              <Image className="w-12 h-12" src={Github} alt="twitter" priority={true} />
           </button>
           <button className="flex justify-center items-center h-12 w-12 mr-0 bg-off-white rounded-full border-gray border-1 hover:scale-125 hover:duration-150">
-              <Image className="w-8 h-8" src={LinkedIn} alt="github" priority={true} />
+              <Image className="w-[42px] h-[42px]" src={LinkedIn} alt="github" priority={true} />
           </button>
         </div>
       </div>

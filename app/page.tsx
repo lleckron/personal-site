@@ -17,7 +17,7 @@ export default function Home() {
         <CloudBackground />
       </div>
       <AnimatePresence>
-        {showMenuModal && <MenuModal />}
+        {showMenuModal && <MenuModal showMenuModal={ showMenuModal } setShowMenuModal={ setShowMenuModal }/>}
       </AnimatePresence>
     </>
   )
