@@ -1,5 +1,5 @@
 'use client'
-import { motion as m, AnimatePresence } from "framer-motion"
+import { motion as m } from "framer-motion"
 import Link from "next/link"
 
 type MenuModalProps = {

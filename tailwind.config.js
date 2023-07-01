@@ -12,7 +12,8 @@ module.exports = {
         'dark-gray': '#191919',
         'gray': '#343434',
         'menu-gray': '#4F4F4F',
-        'hover-gray': '#676767'
+        'hover-gray': '#676767',
+        'light-gray': '#D3D3D3'
       },
       height: {
         'full-minus-nav': 'calc(100% - 48px)'
