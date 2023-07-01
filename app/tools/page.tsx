@@ -1,6 +1,5 @@
 'use client'
-import React, { useState } from 'react'
-import { motion as m, AnimatePresence } from "framer-motion"
+import React from 'react'
 import ToolCard from '../../components/toolCard'
 import VideoShadowEffect from '../../public/video-shadow-effect.png'
 import Controls from '../../public/controls.png'
