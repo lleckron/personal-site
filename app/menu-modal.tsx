@@ -3,12 +3,11 @@ import { motion as m } from "framer-motion"
 import Link from "next/link"
 
 type MenuModalProps = {
-  showMenuModal: boolean
   setShowMenuModal: (bool: boolean) => void
 }
 
 export default function MenuModal( props: MenuModalProps ) {
-  const { showMenuModal, setShowMenuModal } = props
+  const { setShowMenuModal } = props
 
   const menuItems = [
     {

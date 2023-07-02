@@ -16,12 +16,20 @@ export default function Introduction() {
           <p className="text-white text-md md:text-2xl text-shadow-light"> Web Developer &amp; Designer</p>
         </div>
         <div className="flex flex-row justify-center items-center w-full">
-          <button className="flex justify-center items-center h-12 w-12 mr-8 bg-off-white rounded-full border-gray border-1 hover:scale-125 hover:duration-150">
-              <Image className="w-12 h-12" src={Github} alt="twitter" priority={true} />
-          </button>
-          <button className="flex justify-center items-center h-12 w-12 mr-0 bg-off-white rounded-full border-gray border-1 hover:scale-125 hover:duration-150">
-              <Image className="w-[42px] h-[42px]" src={LinkedIn} alt="github" priority={true} />
-          </button>
+          <a 
+          href='https://github.com/lleckron'
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex justify-center items-center h-12 w-12 mr-8 bg-off-white rounded-full border-gray border-1 hover:scale-125 hover:duration-150">
+            <Image className="w-12 h-12" src={Github} alt="twitter" priority={true} />
+          </a>
+          <a 
+          href='https://www.linkedin.com/in/luke-leckron/'
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex justify-center items-center h-12 w-12 mr-0 bg-off-white rounded-full border-gray border-1 hover:scale-125 hover:duration-150">
+            <Image className="w-[42px] h-[42px]" src={LinkedIn} alt="github" priority={true} />
+          </a>
         </div>
       </div>
 

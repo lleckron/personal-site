@@ -21,7 +21,7 @@ export default function RootLayout({
         <Header showMenuModal={ showMenuModal } setShowMenuModal={ setShowMenuModal }/>
         {children}
         <AnimatePresence>
-          {showMenuModal && <MenuModal showMenuModal={ showMenuModal } setShowMenuModal={ setShowMenuModal }/>}
+          {showMenuModal && <MenuModal setShowMenuModal={ setShowMenuModal }/>}
         </AnimatePresence>
       </body>
     </html>

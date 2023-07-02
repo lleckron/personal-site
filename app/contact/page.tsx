@@ -91,7 +91,9 @@ export default function Contact() {
       <p className='text-white text-center mt-10 mb-10'>
         Contact me on &nbsp;
         <a 
-        href="#" 
+        href='https://www.linkedin.com/in/luke-leckron/'
+        target="_blank" 
+        rel="noopener noreferrer"
         className='font-bold underline hover:text-light-gray'>
           LinkedIn
         </a>
