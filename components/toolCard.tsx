@@ -17,8 +17,8 @@ export default function ToolCard( props: ToolCardProps ) {
         <Image src={ imageSrc } alt={ imageAlt } className='w-40 h-24' priority={true}/>
       </div>
       <div className='flex flex-col justify-start items-center w-full h-3/5'>
-        <p className='relative text-center h-1/4 font-bold text-xl text-white text-shadow'>{ title }</p>
-        <p className='relative text-center h-3/4 w-[90%] mt-3 text-lg text-white text-shadow'>{ description }</p>
+        <p className='relative text-center h-1/4 font-bold text-xl text-white text-shadow-dark'>{ title }</p>
+        <p className='relative text-center h-3/4 w-[90%] mt-3 text-lg text-white text-shadow-dark'>{ description }</p>
       </div>
     </div>
   )

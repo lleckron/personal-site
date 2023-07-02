@@ -13,6 +13,10 @@ body {
   background: #191919;
 }
 
-.text-shadow {
+.text-shadow-light {
   text-shadow: 0 0 1px #e9e9e9;
+}
+
+.text-shadow-dark {
+  text-shadow: 0 0 1px #141414;
 }

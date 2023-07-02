@@ -1,79 +1,61 @@
 'use client'
 import React, {useState} from 'react'
+import InputField from './inputField'
+import RadioButton from './radioButton'
 
 export default function Contact() {
-  const [showForm, setShowForm] = useState(false)
-  const maxFormInput = 32
+  const [checkedButton, setCheckedButton] = useState('business')
+  const maxNameInput = 32
   const maxEmailInput = 50
   const maxTextareaInput = 500
 
   function ContactForm() {
 
     return (
-      <div className='flex flex-col md:flex-row items-center h-2/3 min-h-[450px] bg-gray w-[90%] rounded-md'>
+      <div className='flex flex-col md:flex-row items-center min-h-[550px] max-h-[590px] bg-gray w-[90%] max-w-[1200px] rounded-md'>
 
-        <div className='flex flex-col justify-normal md:justify-center items-center relative h-[49%] md:h-full w-[90%] md:w-1/2'>
-          <label htmlFor="name" className="w-[85%] mt-2 md:mt-0 mb-2 text-left text-white font-bold">
-            Your Name:
-          </label>
-          <input 
-          type="text"
-          id="name"
-          placeholder="John Doe"
-          maxLength={maxFormInput}
-          className="flex w-[85%] min-w-[100px] text-lg md:text-xl leading-7 md:leading-10 pl-2 rounded-md" />
+        <div className='flex flex-col justify-normal md:justify-center items-center relative h-[49%] md:h-full w-[90%] md:w-1/2 mt-2'>
+          <InputField
+          id='name'
+          type='text'
+          label='Your Name:'
+          placeholder='John Doe (Optional)'
+          maxLength={maxNameInput} />
 
-          <label htmlFor="email" className="w-[85%] mt-4 mb-2 text-left text-white font-bold">
-            Your Email:
-          </label>
-          <input 
-          type="email"
-          id="email"
-          placeholder="leckronluke@gmail.com (Optional)"
-          maxLength={maxEmailInput}
-          className="flex w-[85%] min-w-[100px] text-lg md:text-xl leading-7 md:leading-10 pl-2 rounded-md" />
+          <InputField
+          id='email'
+          type='email'
+          label='Your Email:'
+          placeholder='leckronluke@gmail.com (Optional)'
+          maxLength={maxEmailInput} />
           
           <label htmlFor='message-type' className="w-[85%] mt-4 mb-2 text-left text-white font-bold">
             Message Type:
           </label>
-          <div
-          id='message-type'
-          className='flex flex-row justify-between items-center w-[85%] pt-5'>
+          <div id='message-type' className='flex flex-row justify-between items-center w-[85%] lg:w-3/5 pt-5'>
 
             <div className='flex flex-col-reverse justify-center items-center'>
-              <label htmlFor='business' className=" text-white font-bold">
-                Business
-              </label>
-              <input 
-              type="radio"
-              id="business"
-              name="messageType"
-              value="business"
-              className='mb-2'/>
+              <RadioButton
+              id='business'
+              label='Business'
+              checkedButton={ checkedButton }
+              setCheckedButton={ setCheckedButton }/>
             </div>
 
             <div className='flex flex-col-reverse justify-center items-center'>
-              <label htmlFor='general' className="text-white font-bold">
-                General / Question
-              </label>
-              <input 
-              type="radio"
-              id="general"
-              name="messageType"
-              value="general"
-              className='mb-2'/>
+              <RadioButton
+              id='general'
+              label='General / Question'
+              checkedButton={ checkedButton }
+              setCheckedButton={ setCheckedButton }/>
             </div>
 
             <div className='flex flex-col-reverse justify-center items-center'>
-              <label htmlFor='feedback' className="text-white font-bold">
-                Feedback
-              </label>
-              <input 
-              type="radio"
-              id="feedback"
-              name="messageType"
-              value="feedback"
-              className='mb-2'/>
+              <RadioButton
+              id='feedback'
+              label='Feedback'
+              checkedButton={ checkedButton }
+              setCheckedButton={ setCheckedButton }/>
             </div>
 
           </div>
@@ -81,7 +63,7 @@ export default function Contact() {
 
         <div className='hidden md:flex w-1 h-[95%] bg-hover-gray rounded-full'></div>
           
-        <div className='flex flex-col justify-normal md:justify-center items-center relative h-[49%] md:h-full w-[90%] md:w-1/2'>
+        <div className='flex flex-col justify-normal md:justify-center items-center relative h-[49%] md:h-[80%] w-[90%] md:w-1/2 mt-3 md:mt-0'>
           <label htmlFor="message" className="w-[85%] mt-2 mb-3 text-left text-white font-bold">
             Message:
           </label>
@@ -90,7 +72,13 @@ export default function Contact() {
           name='message' 
           maxLength={maxTextareaInput}
           placeholder='Tell me anything!'
-          className='flex w-[85%] h-[80%] min-w-[100px] text-lg pl-2 rounded-md resize-none'></textarea>
+          className='flex w-[85%] h-[70%] min-w-[100px] md:text-lg pl-2 rounded-md resize-none'></textarea>
+        
+          <div className='flex justify-center items-center w-full mt-7'>
+            <button className='w-20 h-10 bg-medium-gray text-white mb-7 font-bold rounded-md text-shadow-dark'>
+              Submit
+            </button>
+          </div>
         </div>
 
       </div>
@@ -98,7 +86,7 @@ export default function Contact() {
   }
 
   return (
-    <div className='flex flex-col items-center h-full-minus-nav w-full mb-7 md:mb-0'>
+    <div className='flex flex-col items-center h-full md:h-full-minus-nav w-full pb-10 md:pb-0'>
 
       <p className='text-white text-center mt-10 mb-10'>
         Contact me on &nbsp;
