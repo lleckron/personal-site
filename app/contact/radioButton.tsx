@@ -10,7 +10,9 @@ export default function RadioButton( props: radioButtonProps ) {
   const { id, label, checkedButton, setCheckedButton } = props
 
   return (
-    <div className='flex flex-col-reverse justify-center items-center'>
+    <div className='flex flex-col-reverse justify-center items-center' 
+    tabIndex={0}
+    onKeyDown={(event) => { event.key === 'Enter' && setCheckedButton(id) }}>
       <label 
       htmlFor={id}
       className={`text-sm md:text-base font-bold hover:cursor-pointer select-none ${checkedButton === id ? 'text-white' : ' text-medium-gray'}`}

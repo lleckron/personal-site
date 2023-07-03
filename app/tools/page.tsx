@@ -1,4 +1,3 @@
-'use client'
 import React from 'react'
 import ToolCard from '../../components/toolCard'
 import VideoShadowEffect from '../../public/video-shadow-effect.png'
@@ -9,7 +8,7 @@ export default function Tools() {
 
   return (
     <div className='flex flex-col md:flex-row justify-center items-center flex-wrap relative mt-10'>
-      <Link href='/shadow-effect'>
+      <Link href='/tools/shadow-effect'>
         <ToolCard 
         title='Video Shadow Effect' 
         description='Adds some life to a page by adding a shadow based on the colors in a video.' 

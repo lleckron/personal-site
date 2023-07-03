@@ -63,7 +63,7 @@ export default function MenuModal( props: MenuModalProps ) {
           href={item.link}
           key={item.id}
           onClick={() => setShowMenuModal(false)}
-          onKeyDown={(event) => { event.key === 'Enter' && console.log('here') }}>
+          onKeyDown={(event) => { event.key === 'Enter' && setShowMenuModal(false) }}>
             <li className='flex justify-center items-center w-full h-14 text-center text-white hover:cursor-pointer hover:bg-hover-gray hover:font-bold'>
               {item.displayText}
             </li>

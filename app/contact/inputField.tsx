@@ -20,6 +20,7 @@ export default function InputField(props: InputFieldProps) {
       id={id}
       placeholder={placeholder}
       maxLength={maxLength}
+      autoComplete="on"
       className="flex w-[85%] min-w-[100px] mb-2 md:text-xl leading-7 md:leading-10 pl-2 rounded-md" />      
     </>
   )
