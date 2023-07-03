@@ -12,9 +12,9 @@ export default function InputField(props: InputFieldProps) {
 
   return (
     <>
-      <label htmlFor={id} className="w-[85%] md:mt-0 mb-2 text-left text-white font-bold">
+      <p className="w-[85%] md:mt-0 mb-2 text-left text-white font-bold">
         { label }
-      </label>
+      </p>
       <input 
       type={type}
       id={id}

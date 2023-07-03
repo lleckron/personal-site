@@ -29,9 +29,9 @@ export default function Contact() {
           placeholder='leckronluke@gmail.com (Optional)'
           maxLength={maxEmailInput} />
           
-          <label htmlFor='message-type' className="w-[85%] mt-4 mb-2 text-left text-white font-bold">
+          <p className="w-[85%] mt-4 mb-2 text-left text-white font-bold">
             Message Type:
-          </label>
+          </p>
           <div id='message-type' className='flex flex-row justify-between items-center w-[85%] lg:w-3/5 pt-5'>
 
             <div className='flex flex-col-reverse justify-center items-center'>
@@ -64,9 +64,9 @@ export default function Contact() {
         <div className='hidden md:flex w-1 h-[95%] bg-hover-gray rounded-full'></div>
           
         <div className='flex flex-col justify-normal md:justify-center items-center relative h-[49%] md:h-[80%] w-[90%] md:w-1/2 mt-3 md:mt-0'>
-          <label htmlFor="message" className="w-[85%] mt-2 mb-3 text-left text-white font-bold">
+          <p className="w-[85%] mt-2 mb-3 text-left text-white font-bold">
             Message:
-          </label>
+          </p>
           <textarea 
           id='message'
           name='message' 
