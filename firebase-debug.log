@@ -1,0 +1,40 @@
+[debug] [2023-07-04T08:28:34.432Z] ----------------------------------------------------------------------
+[debug] [2023-07-04T08:28:34.434Z] Command:       /usr/local/bin/firebase /Users/bethleckron/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase deploy
+[debug] [2023-07-04T08:28:34.434Z] CLI Version:   12.4.2
+[debug] [2023-07-04T08:28:34.434Z] Platform:      darwin
+[debug] [2023-07-04T08:28:34.435Z] Node Version:  v16.16.0
+[debug] [2023-07-04T08:28:34.436Z] Time:          Tue Jul 04 2023 04:28:34 GMT-0400 (Eastern Daylight Time)
+[debug] [2023-07-04T08:28:34.436Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-07-04T08:28:34.522Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-07-04T08:28:34.523Z] > authorizing via signed-in user (leckmanbaseball@gmail.com)
+[debug] [2023-07-04T08:28:34.524Z] [iam] checking project leckron-17032 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-07-04T08:28:34.525Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/leckron-17032:testIamPermissions [none]
+[debug] [2023-07-04T08:28:34.526Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/leckron-17032:testIamPermissions x-goog-quota-user=projects/leckron-17032
+[debug] [2023-07-04T08:28:34.527Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/leckron-17032:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-07-04T08:28:34.776Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/leckron-17032:testIamPermissions 200
+[debug] [2023-07-04T08:28:34.781Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/leckron-17032:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-07-04T08:28:34.783Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/leckron-17032 [none]
+[debug] [2023-07-04T08:28:35.000Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/leckron-17032 200
+[debug] [2023-07-04T08:28:35.000Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/leckron-17032 {"projectId":"leckron-17032","projectNumber":"802012214977","displayName":"leckron","name":"projects/leckron-17032","resources":{"hostingSite":"leckron-17032"},"state":"ACTIVE","etag":"1_f58a1351-0a94-45c8-9b50-dcdfd98920a1"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[info] Building a Cloud Function to run this application. This is needed due to:
+[info]  • Image Optimization
+[info] 
+[debug] [2023-07-04T08:29:34.570Z] Error: Command failed: npm i --omit dev --no-audit
+    at checkExecSyncError (node:child_process:828:11)
+    at Object.execSync (node:child_process:899:15)
+    at execSync (pkg/prelude/bootstrap.js:2111:30)
+    at prepareFrameworks (/Users/bethleckron/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/frameworks/index.js:367:42)
+    at async deploy (/Users/bethleckron/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/deploy/index.js:55:13)
+[error] 
+[error] Error: An unexpected error has occurred.
