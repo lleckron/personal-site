@@ -12,7 +12,7 @@ export default function CloudBackground() {
       <Image className="fixed w-full h-full object-cover animate-cloudy-one" src='https://leckron-17032.web.app/cloud1.png' alt="fog-1" priority={true} unoptimized />
       <Image className="fixed w-full h-full object-cover animate-cloudy-two" src='https://leckron-17032.web.app/cloud2.png' alt="fog-2" priority={true} unoptimized />
       <Image className="fixed w-full h-full object-cover animate-cloudy-three" src='https://leckron-17032.web.app/cloud1.png' alt="fog-3" priority={true} unoptimized />
-      <Image className="fixed w-full h-full object-cover animate-cloudy-four" src='https://leckron-17032.web.app/cloud1.png' alt="fog-4" priority={true} unoptimized />
+      <Image className="fixed w-full h-full object-cover animate-cloudy-four" src='https://leckron-17032.web.app/cloud1.png' alt="fog-4" priority={true} unoptimized/>
     </div>
   )
 }
