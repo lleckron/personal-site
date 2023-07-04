@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 
+const customNextConfig = require('./next.config');
+
+const server = next({
+  dev: isDev,
+  conf: customNextConfig,
+})
+
 module.exports = {
     // ...other Next.js config options...
   
