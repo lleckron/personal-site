@@ -1,8 +1,8 @@
 'use client'
 import React from 'react'
 import ToolCard from '../../components/toolCard'
-import RightCall from '../../public/right-call.png'
-import LawnCare from '../../public/lawn-care.png'
+//import RightCall from '../../public/right-call.png'
+//import LawnCare from '../../public/lawn-care.png'
 
 export default function Tools() {
 
