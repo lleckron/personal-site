@@ -22,6 +22,7 @@ export default function Tools() {
         getRGBAverage(dataTop.data, dataBottom.data)
       }
     }
+    
   }
 
   function getRGBAverage(dataTop: Uint8ClampedArray, dataBottom: Uint8ClampedArray) {
@@ -47,24 +48,26 @@ export default function Tools() {
   }
 
   function setAmbientLight(r: number, g: number, b: number, denominator: number) {
+    
     const avgRed = Math.floor(r / denominator)
     const avgGreen = Math.floor(g / denominator)
     const avgBlue = Math.floor(b / denominator)
 
     if(videoRef.current) {
-      videoRef.current.style.boxShadow = `0 0 10px rgba(${ avgRed },${ avgGreen },${ avgBlue }, 0.2),
-      0 0 30px rgba(${ avgRed },${ avgGreen },${ avgBlue }, 0.4),
-      0 0 50px rgba(${ avgRed },${ avgGreen },${ avgBlue }, 0.6),
-      0 0 70px rgba(${ avgRed },${ avgGreen },${ avgBlue }, 0.8),
-      0 0 100px rgba(${ avgRed },${ avgGreen },${ avgBlue }, 1)`
+      videoRef.current.style.boxShadow = `
+      0 0 20px rgba(${ avgRed },${ avgGreen },${ avgBlue }, 0.2),
+      0 0 40px rgba(${ avgRed },${ avgGreen },${ avgBlue }, 0.4),
+      0 0 60px rgba(${ avgRed },${ avgGreen },${ avgBlue }, 0.6),
+      0 0 80px rgba(${ avgRed },${ avgGreen },${ avgBlue }, 0.8),
+      0 0 110px rgba(${ avgRed },${ avgGreen },${ avgBlue }, 1)
+      `
     }
-    
   }
 
   function VideoPlayer() {
 
     return (
-      <div className='flex justify-center pt-14 relative w-full h-full-minus-nav'>
+      <div className='flex flex-col items-center justify-center pt-14 relative w-full'>
         <video 
         className='h-[198px] w-[350px] md:h-[445px] md:w-[790px] transition-shadow'
         id='ambient-video'
@@ -72,8 +75,25 @@ export default function Tools() {
         ref={ videoRef }
         loop
         muted
-        controls
+        autoPlay
         onTimeUpdate={ getImageColors }/>
+
+        <article
+        className='flex flex-col justify-center items-center w-[90%] md:w-3/4 mt-10 mb-10 relative'>
+          <p className='text-white md:text-lg w-[75%]'>
+            <span className="ml-10"></span>This is a nice and simple effect to bring a little extra detail to videos on pages
+            where the video is supposed to be the main focus, but other elements can take away
+            from that. This was inspired by how YouTube displays browser videos in dark mode.
+          </p>
+          <p className='text-white md:text-lg w-[75%] mt-5'>
+            <span className="ml-10"></span>This works by taking the RGB values of the pixels in three rows: the top, middle, and 
+            bottom rows of the video. These are added up and averaged, and then the shadow is set.
+            The process is fast, generally consuming only 7-8ms total on the system load. I also 
+            a small shadow transition effect, to make the change from color to color a bit nicer.
+          </p>
+          <div className="absolute h-full left-0 border-l-4 border-l-off-white"></div>
+          <div className="absolute h-full right-0 border-r-4 border-r-off-white"></div>
+        </article>
       </div>
     )
   }
