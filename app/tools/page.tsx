@@ -1,7 +1,7 @@
 import React from 'react'
 import ToolCard from '../../components/toolCard'
-import VideoShadowEffect from '../../public/video-shadow-effect.png'
-import Controls from '../../public/controls.png'
+//import VideoShadowEffect from '../../public/video-shadow-effect.png'
+//import Controls from '../../public/controls.png'
 import Link from 'next/link'
 
 export default function Tools() {
@@ -12,14 +12,14 @@ export default function Tools() {
         <ToolCard 
         title='Video Shadow Effect' 
         description='Adds some life to a page by adding a shadow based on the colors in a video.' 
-        imageSrc={VideoShadowEffect} 
+        imageSrc='https://leckron-17032.web.app/video-shadow-effect.png'
         imageAlt='Video Shadow Effect' />
       </Link>
 
       <ToolCard 
       title='Custom Video Controls' 
       description='Includes timestamping and custom elapsed bar and time seeker.' 
-      imageSrc={Controls} 
+      imageSrc='https://leckron-17032.web.app/controls.png'
       imageAlt='Custom Video Controls' />
     </div>
   )

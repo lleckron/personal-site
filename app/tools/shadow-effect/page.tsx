@@ -1,6 +1,6 @@
 'use client'
 import React, { useRef } from 'react'
-import AmbientVideo from '../../../public/ambient-480p.mp4'
+//import AmbientVideo from '../../../public/ambient-480p.mp4'
 
 export default function Tools() {
 
@@ -71,7 +71,7 @@ export default function Tools() {
         <video 
         className='h-[198px] w-[350px] md:h-[445px] md:w-[790px] transition-shadow'
         id='ambient-video'
-        src={ AmbientVideo }
+        src='https://leckron-17032.web.app/ambient-480p.mp4'
         ref={ videoRef }
         loop
         muted

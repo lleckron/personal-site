@@ -1,10 +1,10 @@
 import React from "react"
-import Image, { StaticImageData } from "next/image"
+import Image from "next/image"
 
 type ToolCardProps = {
   title: string,
   description: string,
-  imageSrc: StaticImageData,
+  imageSrc: string,
   imageAlt: string,
 }
 

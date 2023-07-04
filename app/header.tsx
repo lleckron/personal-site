@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import Image from "next/image"
-import Logo from '../public/ll-logo.png'
+//import Logo from '../public/ll-logo.png'
 
 type HeaderProps = {
   showMenuModal: boolean
@@ -27,7 +27,7 @@ export default function Header( props: HeaderProps ) {
         </div>
 
         <div className="flex justify-center items-center h-full w-10">
-          <Image className="w-8 h-8" src={Logo} alt="logo" priority={true} />
+          <Image className="w-8 h-8" src='https://leckron-17032.web.app/ll-logo.png' alt="logo" priority={true} />
         </div>
 
       </nav>
