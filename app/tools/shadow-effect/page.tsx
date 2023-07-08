@@ -92,6 +92,7 @@ export default function Tools() {
         muted
         controls={!shouldAutoplay}
         autoPlay={shouldAutoplay}
+        playsInline
         onTimeUpdate={ getImageColors }/>
 
         <article
