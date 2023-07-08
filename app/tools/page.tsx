@@ -16,11 +16,13 @@ export default function Tools() {
         imageAlt='Video Shadow Effect' />
       </Link>
 
+      <Link href='/tools/video-controls'>
       <ToolCard 
-      title='Custom Video Controls' 
-      description='Includes timestamping and custom elapsed bar and time seeker.' 
-      imageSrc='https://leckron-17032.web.app/controls.png'
-      imageAlt='Custom Video Controls' />
+        title='Custom Video Controls' 
+        description='Includes timestamping and custom elapsed bar and time seeker.' 
+        imageSrc='https://leckron-17032.web.app/controls.png'
+        imageAlt='Custom Video Controls' />
+      </Link>
     </div>
   )
 }

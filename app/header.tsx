@@ -8,7 +8,7 @@ type HeaderProps = {
   setShowMenuModal: (bool: boolean) => void
 }
 
-export default function Header( props: HeaderProps ) {
+export default function Header(props: HeaderProps) {
   const { showMenuModal, setShowMenuModal } = props
 
   return (
@@ -16,10 +16,10 @@ export default function Header( props: HeaderProps ) {
       <nav className="flex flex-row justify-between items-center w-3/4 h-full">
 
         <div className="flex h-full w-5">
-          <button 
-          className="flex flex-col justify-center items-center relative w-full [&>*:nth-child(2)]:mt-1 [&>*:nth-child(2)]:mb-1"
-          onClick={() => setShowMenuModal(!showMenuModal)}
-          aria-label='Menu'>
+          <button
+            className="flex flex-col justify-center items-center relative w-full [&>*:nth-child(2)]:mt-1 [&>*:nth-child(2)]:mb-1"
+            onClick={() => setShowMenuModal(!showMenuModal)}
+            aria-label='Menu'>
             <span className="bg-black w-full h-[3px] rounded-sm"></span>
             <span className="bg-black w-full h-[3px] rounded-sm"></span>
             <span className="bg-black w-full h-[3px] rounded-sm"></span>
@@ -27,7 +27,7 @@ export default function Header( props: HeaderProps ) {
         </div>
 
         <div className="flex justify-center items-center h-full w-10">
-          <Image className="w-8 h-8" src='https://leckron-17032.web.app/ll-logo.png' width={32} height={32} alt="logo" priority={true} unoptimized/>
+          <Image className="w-8 h-8" src='https://leckron-17032.web.app/ll-logo.png' width={32} height={32} alt="logo" priority={true} unoptimized />
         </div>
 
       </nav>

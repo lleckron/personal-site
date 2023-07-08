@@ -18,10 +18,10 @@ export default function RootLayout({
     <html lang="en">
       <HeadData />
       <body>
-        <Header showMenuModal={ showMenuModal } setShowMenuModal={ setShowMenuModal }/>
+        <Header showMenuModal={showMenuModal} setShowMenuModal={setShowMenuModal} />
         {children}
         <AnimatePresence>
-          {showMenuModal && <MenuModal setShowMenuModal={ setShowMenuModal }/>}
+          {showMenuModal && <MenuModal setShowMenuModal={setShowMenuModal} />}
         </AnimatePresence>
       </body>
     </html>
