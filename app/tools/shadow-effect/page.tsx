@@ -19,6 +19,8 @@ export default function Tools() {
         context.drawImage(video, 0, 0, canvas.width, canvas.height)
         const dataTop = context.getImageData(0, 0, 1, canvas.width)
         const dataBottom = context.getImageData(canvas.height - 1, 0, 1, canvas.width)
+        console.log(`DataTop data: ${dataTop.data} \n`)
+        console.log(`DataBottom data: ${dataTop.data} \n`)
         getRGBAverage(dataTop.data, dataBottom.data)
       }
     }
@@ -44,6 +46,10 @@ export default function Tools() {
       b += dataBottom[i + 2]
       denominator += 1
     }
+    console.log(`r: ${r} \n`)
+    console.log(`g: ${g} \n`)
+    console.log(`b: ${b} \n`)
+    console.log(`denominator: ${denominator} \n`)
     setAmbientLight(r, g, b, denominator)
   }
 
@@ -62,6 +68,7 @@ export default function Tools() {
       0 0 110px rgba(${ avgRed },${ avgGreen },${ avgBlue }, 1)
       `
     }
+    console.log(`Box shadow: ${videoRef.current?.style.boxShadow}`)
   }
 
   function VideoPlayer() {
