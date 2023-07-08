@@ -27,7 +27,7 @@ export default function Header( props: HeaderProps ) {
         </div>
 
         <div className="flex justify-center items-center h-full w-10">
-          <Image className="w-8 h-8" src='https://leckron-17032.web.app/ll-logo.png' alt="logo" priority={true} unoptimized/>
+          <Image className="w-8 h-8" src='https://leckron-17032.web.app/ll-logo.png' width={32} height={32} alt="logo" priority={true} unoptimized/>
         </div>
 
       </nav>

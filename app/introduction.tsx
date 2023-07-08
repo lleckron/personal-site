@@ -21,21 +21,21 @@ export default function Introduction() {
           target="_blank" 
           rel="noopener noreferrer"
           className="flex justify-center items-center h-12 w-12 mr-8 bg-off-white rounded-full border-gray border-1 hover:scale-125 hover:duration-150">
-            <Image className="w-12 h-12" src='https://leckron-17032.web.app/github-black.png' alt="twitter" priority={true} unoptimized/>
+            <Image className="w-12 h-12" src='https://leckron-17032.web.app/github-black.png' alt="twitter" width={48} height={48} priority={true} unoptimized/>
           </a>
           <a 
           href='https://www.linkedin.com/in/luke-leckron/'
           target="_blank" 
           rel="noopener noreferrer"
           className="flex justify-center items-center h-12 w-12 mr-0 bg-off-white rounded-full border-gray border-1 hover:scale-125 hover:duration-150">
-            <Image className="w-[42px] h-[42px]" src='https://leckron-17032.web.app/linkedin-black.png' alt="github" priority={true} unoptimized/>
+            <Image className="w-[42px] h-[42px]" src='https://leckron-17032.web.app/linkedin-black.png' alt="github" width={48} height={48} priority={true} unoptimized/>
           </a>
         </div>
       </div>
 
       <div className="flex justify-center items-center relative w-1/2 mb-5 md:mb-0">
         <div className="flex justify-center items-end w-48 md:w-[400px] h-48 md:h-[400px] bg-off-white rounded-full overflow-hidden">
-          <Image className="w-[150px] md:w-[300px] h-full" src='https://leckron-17032.web.app/headshot.png' alt="headshot" priority={true} unoptimized/>
+          <Image className="w-[150px] md:w-[300px] h-full" src='https://leckron-17032.web.app/headshot.png' alt="headshot" width={48} height={48} priority={true} unoptimized/>
         </div>
       </div>
 

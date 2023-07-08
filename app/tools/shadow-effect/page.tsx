@@ -5,7 +5,6 @@ import React, { useRef } from 'react'
 export default function Tools() {
 
   const videoRef = useRef<HTMLVideoElement>(null)
-  
 
   function getImageColors() {
     const video = videoRef.current
@@ -71,7 +70,16 @@ export default function Tools() {
     console.log(`Box shadow: ${videoRef.current?.style.boxShadow}`)
   }
 
+  const isAutoplaySupported = () => {
+    if(videoRef.current) {
+      return typeof videoRef.current.autoplay !== 'undefined'
+    } else {
+      return false
+    }
+  }
+
   function VideoPlayer() {
+    const shouldAutoplay = isAutoplaySupported()
 
     return (
       <div className='flex flex-col items-center justify-center pt-14 relative w-full'>
@@ -82,7 +90,8 @@ export default function Tools() {
         ref={ videoRef }
         loop
         muted
-        autoPlay
+        controls={!shouldAutoplay}
+        autoPlay={shouldAutoplay}
         onTimeUpdate={ getImageColors }/>
 
         <article
