@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+'use client'
+import React from 'react'
 import CloudBackground from './cloud-background'
 import Introduction from './introduction'
 

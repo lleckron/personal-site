@@ -19,14 +19,14 @@ export default function Contact() {
           id='name'
           type='text'
           label='Your Name:'
-          placeholder='John Doe (Optional)'
+          placeholder='John Doe'
           maxLength={maxNameInput} />
 
           <InputField
           id='email'
           type='email'
           label='Your Email:'
-          placeholder='leckronluke@gmail.com (Optional)'
+          placeholder='leckronluke@gmail.com'
           maxLength={maxEmailInput} />
           
           <p className="w-[85%] mt-4 mb-2 text-left text-white font-bold">
@@ -44,8 +44,8 @@ export default function Contact() {
 
             <div className='flex flex-col-reverse justify-center items-center'>
               <RadioButton
-              id='general'
-              label='General / Question'
+              id='question'
+              label='Question'
               checkedButton={ checkedButton }
               setCheckedButton={ setCheckedButton }/>
             </div>
@@ -108,7 +108,6 @@ export default function Contact() {
 
       <div className='flex flex-row justify-center items-center mb-5 select-none'>
         <p className='text-white text-center font-bold text-2xl mr-5'>Message me directly</p>
-        <i className='flex p-2 -mt-1 border-white border-r-[2px] border-b-[2px] rotate-[45deg]'></i>
       </div>
       
       <ContactForm />
