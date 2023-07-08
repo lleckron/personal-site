@@ -18,8 +18,6 @@ export default function Tools() {
         context.drawImage(video, 0, 0, canvas.width, canvas.height)
         const dataTop = context.getImageData(0, 0, 1, canvas.width)
         const dataBottom = context.getImageData(canvas.height - 1, 0, 1, canvas.width)
-        console.log(`DataTop data: ${dataTop.data} \n`)
-        console.log(`DataBottom data: ${dataTop.data} \n`)
         getRGBAverage(dataTop.data, dataBottom.data)
       }
     }
@@ -45,10 +43,6 @@ export default function Tools() {
       b += dataBottom[i + 2]
       denominator += 1
     }
-    console.log(`r: ${r} \n`)
-    console.log(`g: ${g} \n`)
-    console.log(`b: ${b} \n`)
-    console.log(`denominator: ${denominator} \n`)
     setAmbientLight(r, g, b, denominator)
   }
 
@@ -67,7 +61,6 @@ export default function Tools() {
       0 0 110px rgba(${ avgRed },${ avgGreen },${ avgBlue }, 1)
       `
     }
-    console.log(`Box shadow: ${videoRef.current?.style.boxShadow}`)
   }
 
   const isAutoplaySupported = () => {
@@ -98,12 +91,12 @@ export default function Tools() {
         <article
         className='flex flex-col justify-center items-center w-[90%] md:w-3/4 mt-10 mb-10 relative'>
           <p className='text-white md:text-lg w-[75%]'>
-            <span className="ml-10"></span>This is a nice and simple effect to bring a little extra detail to videos on pages
+            <span className="ml-5 md:ml-10"></span>This is a nice and simple effect to bring a little extra detail to videos on pages
             where the video is supposed to be the main focus, but other elements can take away
             from that. This was inspired by how YouTube displays browser videos in dark mode.
           </p>
           <p className='text-white md:text-lg w-[75%] mt-5'>
-            <span className="ml-10"></span>This works by taking the RGB values of the pixels in three rows: the top, middle, and 
+            <span className="ml-5 md:ml-10"></span>This works by taking the RGB values of the pixels in three rows: the top, middle, and 
             bottom rows of the video. These are added up and averaged, and then the shadow is set.
             The process is fast, generally consuming only 7-8ms total on the system load. I also 
             a small shadow transition effect, to make the change from color to color a bit nicer.
