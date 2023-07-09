@@ -2,7 +2,7 @@
 import React, { useRef } from 'react'
 //import AmbientVideo from '../../../public/ambient-480p.mp4'
 
-export default function Tools() {
+export default function ShadowEffect() {
 
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -71,7 +71,7 @@ export default function Tools() {
     }
   }
 
-  function VideoPlayer() {
+  function Video() {
     const shouldAutoplay = isAutoplaySupported()
 
     return (
@@ -109,6 +109,6 @@ export default function Tools() {
   }
 
   return (
-    <VideoPlayer />
+    <Video />
   )
 }
