@@ -1,23 +1,21 @@
 'use client'
 import React, { useEffect, useRef, useState } from "react"
+import VideoPlayerContainer from "./VideoPlayerContainer"
 
 export default function VideoControls() {
 
-  const VideoMode = {
-    PLAYER: 'player',
-    EDITOR: 'editor',
-  }
-
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [videoMode, setVideoMode] = useState(VideoMode.PLAYER)
-  const [showControls, setShowControls] = useState(false)
+  const [videoMode, setVideoMode] = useState('player')
+
   const minWidth = 320
   const minHeight = 180
+  const maxWidth = 1150
+  const maxHeight = 650
 
   useEffect(() => {
     const setVideoAspectRatio = () => {
-      if (videoMode === VideoMode.PLAYER) {
+      if (videoMode === 'player') {
         const containerWidth = containerRef.current?.getBoundingClientRect().width
         if (containerWidth && videoRef.current) {
           const width = containerWidth / 1.33
@@ -25,11 +23,16 @@ export default function VideoControls() {
 
           if (width < minWidth) {
             videoRef.current.style.width = minWidth + 'px'
+          } else if (width > maxWidth) {
+            videoRef.current.style.width = maxWidth + 'px'
           } else {
             videoRef.current.style.width = width + 'px'
           }
+
           if (height < minHeight) {
             videoRef.current.style.height = minHeight + 'px'
+          } else if (height > maxHeight) {
+            videoRef.current.style.height = maxHeight + 'px'
           } else {
             videoRef.current.style.height = height + 'px'
           }
@@ -45,7 +48,23 @@ export default function VideoControls() {
     )
   }, [videoMode])
 
-  function VideoPlayerContainer() {
+  const toggleVideoMode = () => {
+    setVideoMode((prevMode) =>
+      prevMode === 'player' ? 'editor' : 'player'
+    )
+  }
+
+
+  function VideoPlayer() {
+    const [showControls, setShowControls] = useState(false)
+    const [videoStatus, setVideoStatus] = useState('pause')
+    const [videoTime, setVideoTime] = useState<number>(0)
+
+    const handleTimeUpdate = () => {
+      if (videoRef.current) {
+        setVideoTime(videoRef.current.currentTime)
+      }
+    }
 
     return (
       <div
@@ -54,22 +73,18 @@ export default function VideoControls() {
         onMouseEnter={() => setShowControls(true)}
         onMouseLeave={() => setShowControls(false)} >
         <video
-          className='min-w-[640px] min-h-[360px] transition-shadow'
+          className='transition-shadow'
           id='ambient-video'
           src='https://leckron-17032.web.app/ambient-480p.mp4'
           ref={videoRef}
           muted
-          playsInline/>
-        {showControls && <VideoPlayerControls />}
-      </div>
-    )
-  }
-
-  function VideoPlayerControls() {
-    return (
-      <div
-        className="absolute bottom-0 w-full h-full bg-gray bg-opacity-50">
-
+          playsInline
+          onTimeUpdate={handleTimeUpdate} />
+        {showControls && <VideoPlayerContainer
+          videoRef={videoRef}
+          videoStatus={videoStatus}
+          setVideoStatus={setVideoStatus}
+          videoTime={videoTime} />}
       </div>
     )
   }
@@ -92,16 +107,10 @@ export default function VideoControls() {
     )
   }
 
-  const toggleVideoMode = () => {
-    setVideoMode((prevMode) =>
-      prevMode === VideoMode.PLAYER ? VideoMode.EDITOR : VideoMode.PLAYER
-    )
-  }
-
   return (
     <>
-      {videoMode === VideoMode.EDITOR && <VideoEditorContainer />}
-      {videoMode === VideoMode.PLAYER && <VideoPlayerContainer />}
+      {videoMode === 'editor' && <VideoEditorContainer />}
+      {videoMode === 'player' && <VideoPlayer />}
       <div className="flex justify-center mt-3 w-full ">
         <SwapModeButton />
       </div>
