@@ -30,9 +30,9 @@ export default function VideoPlayerContainer(props: VideoPlayerContainerProps) {
         key="controls"
         className="flex justify-center absolute w-full h-full bg-dark-gray bg-opacity-30">
         <div
-          className="flex flex-row justify-between w-full h-12 absolute bottom-10"
+          className="flex flex-row justify-between w-4/5 md:w-3/4 h-4 md:h-10 absolute bottom-10 select-none"
           key="time-and-playback-div">
-          <div className="flex flex-row justify-center items-center w-24 h-full ml-4">
+          <div className="flex flex-row justify-center items-center w-18 md:w-24 h-full">
             <VideoPlayback
               videoRef={videoRef}
               videoStatus={videoStatus}

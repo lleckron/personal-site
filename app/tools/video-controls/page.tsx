@@ -6,7 +6,6 @@ export default function VideoControls() {
 
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [videoMode, setVideoMode] = useState('player')
 
   const minWidth = 320
   const minHeight = 180
@@ -15,27 +14,25 @@ export default function VideoControls() {
 
   useEffect(() => {
     const setVideoAspectRatio = () => {
-      if (videoMode === 'player') {
-        const containerWidth = containerRef.current?.getBoundingClientRect().width
-        if (containerWidth && videoRef.current) {
-          const width = containerWidth / 1.33
-          const height = (width / 16) * 9
+      const containerWidth = containerRef.current?.getBoundingClientRect().width
+      if (containerWidth && videoRef.current) {
+        const width = containerWidth / 1.5
+        const height = (width / 16) * 9
 
-          if (width < minWidth) {
-            videoRef.current.style.width = minWidth + 'px'
-          } else if (width > maxWidth) {
-            videoRef.current.style.width = maxWidth + 'px'
-          } else {
-            videoRef.current.style.width = width + 'px'
-          }
+        if (width < minWidth) {
+          videoRef.current.style.width = minWidth + 'px'
+        } else if (width > maxWidth) {
+          videoRef.current.style.width = maxWidth + 'px'
+        } else {
+          videoRef.current.style.width = width + 'px'
+        }
 
-          if (height < minHeight) {
-            videoRef.current.style.height = minHeight + 'px'
-          } else if (height > maxHeight) {
-            videoRef.current.style.height = maxHeight + 'px'
-          } else {
-            videoRef.current.style.height = height + 'px'
-          }
+        if (height < minHeight) {
+          videoRef.current.style.height = minHeight + 'px'
+        } else if (height > maxHeight) {
+          videoRef.current.style.height = maxHeight + 'px'
+        } else {
+          videoRef.current.style.height = height + 'px'
         }
       }
     }
@@ -46,13 +43,7 @@ export default function VideoControls() {
     return () => (
       window.removeEventListener('resize', setVideoAspectRatio)
     )
-  }, [videoMode])
-
-  const toggleVideoMode = () => {
-    setVideoMode((prevMode) =>
-      prevMode === 'player' ? 'editor' : 'player'
-    )
-  }
+  }, [])
 
 
   function VideoPlayer() {
@@ -90,31 +81,7 @@ export default function VideoControls() {
     )
   }
 
-  function VideoEditorContainer() {
-
-    return (
-      <p>Test</p>
-    )
-  }
-
-  function SwapModeButton() {
-
-    return (
-      <button
-        className="bg-gray text-white text-bold"
-        onClick={() => toggleVideoMode()}>
-        Swap
-      </button>
-    )
-  }
-
   return (
-    <>
-      {videoMode === 'editor' && <VideoEditorContainer />}
-      {videoMode === 'player' && <VideoPlayer />}
-      <div className="flex justify-center mt-3 w-full ">
-        <SwapModeButton />
-      </div>
-    </>
+    <VideoPlayer />
   )
 }

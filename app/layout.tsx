@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <HeadData />
-      <body>
+      <body className='overflow-x-hidden'>
         <Header showMenuModal={showMenuModal} setShowMenuModal={setShowMenuModal} />
         {children}
         <AnimatePresence>

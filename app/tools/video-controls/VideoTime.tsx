@@ -29,7 +29,7 @@ export default function VideoTime(props: VideoTimeProps) {
   }
 
   return (
-    <div className="flex items-center text-white w-14 h-full pl-4">
+    <div className="flex items-center text-white w-10 md:w-14 h-full text-xs md:text-base pl-2 md:pl-4 text-shadow-dark">
       {formatVideoTime()}
     </div>
   )
