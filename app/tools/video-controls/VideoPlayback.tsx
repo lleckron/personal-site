@@ -32,8 +32,8 @@ export default function VideoPlayback(props: VideoPlaybackProps) {
         className=""
         draggable="false"
         onClick={() => toggleVideoState()}>
-        {videoStatus === 'play' && <Image alt='play' src={Pause} />}
-        {videoStatus === 'pause' && <Image alt='play' src={Play} />}
+        {videoStatus === 'play' && <Image alt='play' src={Pause} priority={true} />}
+        {videoStatus === 'pause' && <Image alt='play' src={Play} priority={true} />}
       </button>
     </div>
   )

@@ -84,7 +84,8 @@ export default function VideoControls() {
           videoRef={videoRef}
           videoStatus={videoStatus}
           setVideoStatus={setVideoStatus}
-          videoTime={videoTime} />}
+          videoTime={videoTime}
+          setVideoTime={setVideoTime} />}
       </div>
     )
   }
