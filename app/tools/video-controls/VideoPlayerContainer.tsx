@@ -55,7 +55,6 @@ export default function VideoPlayerContainer(props: VideoPlayerContainerProps) {
           <VideoSeeker
             videoRef={videoRef}
             videoTime={videoTime}
-            setVideoTime={setVideoTime}
             key="video-seeker" />
         </div>
       </m.div>

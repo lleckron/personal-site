@@ -1,76 +1,54 @@
 'use client'
 import React, { useEffect, useRef, useState } from "react"
-import { AnimatePresence, motion as m } from "framer-motion"
 
 type VideoSeekerProps = {
   videoRef: React.RefObject<HTMLVideoElement>
   videoTime: number
-  setVideoTime: (time: number) => void
 }
 
 export default function VideoSeeker(props: VideoSeekerProps) {
-  const { videoRef, videoTime, setVideoTime } = props
+  const { videoRef, videoTime } = props
   const barRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef<HTMLDivElement>(null)
   const seekerRef = useRef<HTMLDivElement>(null)
   const [isDraggingSeeker, setIsDraggingSeeker] = useState(false)
-  const initialMouseX = useRef(0)
-
-  const seekerAnimation = {
-    initial: { height: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
-    transition: { duration: .25, ease: "easeInOut" }
-  }
 
   useEffect(() => {
-    const setVideoBarWidth = () => {
+    const setProgressRefWidth = () => {
       if (progressRef.current && videoRef.current) {
         const videoPosition = videoTime / videoRef.current.duration
         const barWidth = videoPosition * 100
         progressRef.current.style.width = barWidth + '%'
       }
-    }
-    setVideoBarWidth()
+    } 
+    setProgressRefWidth()
   }, [videoTime, videoRef])
 
-  useEffect(() => {
-    const seekerMouseDown = () => {
-      setIsDraggingSeeker(true)
-      if (barRef.current) {
-        barRef.current.addEventListener('mousemove', seekerMouseMove)
+  function setProgressRefWidthFromSeekerDrag(event: React.MouseEvent) {
+    if(isDraggingSeeker) {
+      moveProgressBar(event)
+    }
+  }
+
+  function moveProgressBar(event: React.MouseEvent) {
+    if (barRef.current && progressRef.current && videoRef.current) {
+      const barRefStartingX = barRef.current.getBoundingClientRect().left
+      const barRefWidth = barRef.current.getBoundingClientRect().width
+      if (barRefStartingX) {
+        const newProgressRefX = (event.clientX - barRefStartingX) - 8
+        const videoProgressPercent = newProgressRefX / barRefWidth
+        const newVideoProgress = videoProgressPercent * videoRef.current.duration
+        videoRef.current.currentTime = newVideoProgress
+        progressRef.current.style.width = newProgressRefX + 'px'
       }
     }
-
-    const seekerMouseUp = () => {
-      setIsDraggingSeeker(false)
-      if (barRef.current) {
-        barRef.current.removeEventListener('mousemove', seekerMouseMove)
-      }
-    }
-
-    const seekerMouseMove = (event: MouseEvent) => {
-      event.preventDefault()
-      const target = event.currentTarget
-      if (target) {
-        if (target.id === 'video-progress-div' || target.id === 'progress-bar') {
-          console.log('here')
-        }
-      }
-    }
-
-    if (isDraggingSeeker) {
-      seekerMouseDown()
-    } else {
-      seekerMouseUp()
-    }
-  }, [isDraggingSeeker])
+  }
 
   return (
-    <AnimatePresence>
-      <m.div
-        className="flex items-center relative w-4/5 h-[5px] hover:cursor-pointer bg-seeker-gray rounded-md shadow-md"
+      <div
+        className="flex items-center relative w-4/5 h-1 hover:h-2 hover:cursor-pointer hover:duration-75 bg-seeker-gray rounded-md shadow-md"
         ref={barRef}
+        onMouseDown={(event) => moveProgressBar(event)}
         id="video-progress-div">
         <div
           className="relative h-full bg-red-600 rounded-tl-md rounded-bl-md z-10"
@@ -78,13 +56,13 @@ export default function VideoSeeker(props: VideoSeekerProps) {
           id="progress-bar">
         </div>
         <div
-          className="flex relative h-4 w-4 rounded-full bg-red-600 shadow-sm z-20"
+          className="flex relative h-[18px] w-[18px] rounded-full bg-red-600 shadow-[0_0_5px_0_rgba(0,0,0,1)] z-20"
           ref={seekerRef}
           onMouseDown={() => setIsDraggingSeeker(true)}
+          onMouseMove={(event) => setProgressRefWidthFromSeekerDrag(event)}
           onMouseUp={() => setIsDraggingSeeker(false)}
           id="seeker">
         </div>
-      </m.div>
-    </AnimatePresence>
+      </div>
   )
 }
