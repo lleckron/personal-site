@@ -27,13 +27,13 @@ export default function VideoPlayback(props: VideoPlaybackProps) {
 
 
   return (
-    <div className="flex items-center h-full w-6 md:w-10">
+    <div className="flex items-center h-full w-5 md:w-7">
       <button
-        className="h-5 w-6 md:h-8 md:w-10"
+        className="w-full h-full"
         draggable="false"
         onClick={() => toggleVideoState()}>
-        {videoStatus === 'play' && <Image alt='play' src={Pause} priority={true} className="h-5 w-6 md:h-8 md:w-10"/>}
-        {videoStatus === 'pause' && <Image alt='play' src={Play} priority={true} className="h-5 w-6 md:h-8 md:w-10"/>}
+        {videoStatus === 'play' && <Image alt='play' src={Pause} priority={true} className="w-full h-full"/>}
+        {videoStatus === 'pause' && <Image alt='play' src={Play} priority={true} className="w-full h-full"/>}
       </button>
     </div>
   )

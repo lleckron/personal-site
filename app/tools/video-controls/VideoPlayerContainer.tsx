@@ -13,11 +13,10 @@ type VideoPlayerContainerProps = {
   videoStatus: string
   setVideoStatus: (state: string) => void
   videoTime: number
-  setVideoTime: (time: number) => void
 }
 
 export default function VideoPlayerContainer(props: VideoPlayerContainerProps) {
-  const { videoRef, videoStatus, setVideoStatus, videoTime, setVideoTime } = props
+  const { videoRef, videoStatus, setVideoStatus, videoTime } = props
 
   const controlsAnimation = {
     initial: { opacity: 0 },
@@ -33,9 +32,9 @@ export default function VideoPlayerContainer(props: VideoPlayerContainerProps) {
         key="controls"
         className="flex justify-center absolute w-full h-full bg-dark-gray bg-opacity-30">
         <div
-          className="flex flex-row justify-between w-4/5 md:w-3/4 h-4 md:h-10 absolute bottom-10 select-none"
+          className="flex flex-row justify-between w-[63%] h-4 md:h-6 absolute bottom-10 select-none"
           key="time-and-playback-div">
-          <div className="flex flex-row justify-center items-center w-34 md:w-40 h-full">
+          <div className="flex flex-row justify-left items-center w-34 md:w-40 h-full">
             <VideoPlayback
               videoRef={videoRef}
               videoStatus={videoStatus}
@@ -47,7 +46,7 @@ export default function VideoPlayerContainer(props: VideoPlayerContainerProps) {
             <VideoVolume
               videoRef={videoRef} />
           </div>
-          <div className="flex flex-row justify-center items-center w-11 md:w-20 h-full">
+          <div className="flex flex-row justify-right items-center w-11 md:w-20 h-full">
             <VideoSettings
               videoRef={videoRef} />
             <VideoFullscreen

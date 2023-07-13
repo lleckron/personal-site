@@ -88,7 +88,7 @@ export default function VideoSeeker(props: VideoSeekerProps) {
 
   return (
     <div
-      className="flex items-center relative w-4/5 h-1 hover:h-2 hover:cursor-pointer hover:duration-75 bg-seeker-gray rounded-md shadow-md user"
+      className="flex items-center relative w-[63%] h-1 hover:h-2 hover:cursor-pointer hover:duration-75 bg-seeker-gray rounded-md shadow-md user"
       ref={barRef}
       onMouseDown={(event) => handleMouseEvent(event.nativeEvent)}
       onTouchStart={(event) => handleTouchEvent(event.nativeEvent)}
