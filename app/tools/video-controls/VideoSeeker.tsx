@@ -26,7 +26,7 @@ export default function VideoSeeker(props: VideoSeekerProps) {
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       if (isDraggingSeeker) {
-        moveProgressBarFromMouseEvent(event)
+        handleMouseEvent(event)
       }
     }
 
@@ -36,7 +36,7 @@ export default function VideoSeeker(props: VideoSeekerProps) {
 
     const handleTouchMove = (event: TouchEvent) => {
       if (isDraggingSeeker) {
-        moveProgressBarFromTouchEvent(event)
+        handleTouchEvent(event)
       }
     }
 
@@ -53,26 +53,31 @@ export default function VideoSeeker(props: VideoSeekerProps) {
     }
   }, [isDraggingSeeker])
 
-  function moveProgressBarFromMouseEvent(event: MouseEvent) {
-    if (barRef.current && progressRef.current && videoRef.current) {
+  function handleMouseEvent(event: MouseEvent) {
+    if (barRef.current) {
       const barRefStartingX = barRef.current.getBoundingClientRect().left
-      const barRefWidth = barRef.current.getBoundingClientRect().width
       if (barRefStartingX) {
         const newProgressRefX = event.clientX - barRefStartingX - 8
-        const videoProgressPercent = newProgressRefX / barRefWidth
-        const newVideoProgress = videoProgressPercent * videoRef.current.duration
-        videoRef.current.currentTime = newVideoProgress
-        progressRef.current.style.width = newProgressRefX + "px"
+        moveProgressBar(newProgressRefX)
       }
     }
   }
 
-  function moveProgressBarFromTouchEvent(event: TouchEvent) {
+  function handleTouchEvent(event: TouchEvent) {
+    if (barRef.current) {
+      const barRefStartingX = barRef.current.getBoundingClientRect().left
+      if (barRefStartingX) {
+        const newProgressRefX = event.touches[0].clientX - barRefStartingX - 8
+        moveProgressBar(newProgressRefX)
+      }
+    }
+  }
+
+  function moveProgressBar(newProgressRefX: number) {
     if (barRef.current && progressRef.current && videoRef.current) {
       const barRefStartingX = barRef.current.getBoundingClientRect().left
       const barRefWidth = barRef.current.getBoundingClientRect().width
       if (barRefStartingX) {
-        const newProgressRefX = event.touches[0].clientX - barRefStartingX - 8
         const videoProgressPercent = newProgressRefX / barRefWidth
         const newVideoProgress = videoProgressPercent * videoRef.current.duration
         videoRef.current.currentTime = newVideoProgress
@@ -85,8 +90,8 @@ export default function VideoSeeker(props: VideoSeekerProps) {
     <div
       className="flex items-center relative w-4/5 h-1 hover:h-2 hover:cursor-pointer hover:duration-75 bg-seeker-gray rounded-md shadow-md user"
       ref={barRef}
-      onMouseDown={(event) => moveProgressBarFromMouseEvent(event.nativeEvent)}
-      onTouchStart={(event) => moveProgressBarFromTouchEvent(event.nativeEvent)}
+      onMouseDown={(event) => handleMouseEvent(event.nativeEvent)}
+      onTouchStart={(event) => handleTouchEvent(event.nativeEvent)}
       id="video-progress-div"
     >
       <div
@@ -95,7 +100,7 @@ export default function VideoSeeker(props: VideoSeekerProps) {
         id="progress-bar"
       ></div>
       <div
-        className="flex relative h-[18px] w-[18px] rounded-full bg-red-600 shadow-[0_0_5px_0_rgba(0,0,0,1)] z-20"
+        className="flex relative h-3 w-3 md:h-4 md:w-4 rounded-full bg-red-600 shadow-[0_0_5px_0_rgba(0,0,0,1)] z-20"
         ref={seekerRef}
         onMouseDown={() => setIsDraggingSeeker(true)}
         onTouchStart={() => setIsDraggingSeeker(true)}
