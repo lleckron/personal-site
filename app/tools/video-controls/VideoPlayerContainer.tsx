@@ -1,10 +1,10 @@
 'use client'
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { AnimatePresence, motion as m } from "framer-motion"
 import VideoPlayback from './VideoPlayback'
-import VideoTime from "./VideoTime"
+import VideoTime from './VideoTime';
 import VideoSeeker from "./VideoSeeker"
-import VideoVolume from "./VideoVolume"
+import VideoVolume from './VideoVolume';
 import VideoFullscreen from './VideoFullscreen'
 import VideoSettings from './VideoSettings'
 
@@ -13,10 +13,14 @@ type VideoPlayerContainerProps = {
   videoStatus: string
   setVideoStatus: (state: string) => void
   videoTime: number
+  videoVolume: number
+  loopVideo: boolean
+  setLoopVideo: (state: boolean) => void
 }
 
 export default function VideoPlayerContainer(props: VideoPlayerContainerProps) {
-  const { videoRef, videoStatus, setVideoStatus, videoTime } = props
+  const { videoRef, videoStatus, setVideoStatus, videoTime, videoVolume, loopVideo, setLoopVideo } = props
+  const controlsRef = useRef<HTMLDivElement>(null)
 
   const controlsAnimation = {
     initial: { opacity: 0 },
@@ -25,16 +29,38 @@ export default function VideoPlayerContainer(props: VideoPlayerContainerProps) {
     transition: { duration: .25, ease: "easeInOut" }
   }
 
+  useEffect(() => {
+    const toggleVideoFromVideoElementClick = async (event: MouseEvent) => {
+      const targetNode = event.target as Node
+      if ((videoRef.current && controlsRef.current) && (targetNode === controlsRef.current)) {
+        if (videoStatus === 'play') {
+          videoRef.current.pause()
+          setVideoStatus('pause')
+        } else {
+          await videoRef.current.play()
+          setVideoStatus('play')
+        }
+      }
+    }
+
+    document.addEventListener('click', toggleVideoFromVideoElementClick)
+
+    return () => {
+      document.removeEventListener('click', toggleVideoFromVideoElementClick)
+    }
+  }, [videoStatus])
+
   return (
     <AnimatePresence>
       <m.div
         {...controlsAnimation}
         key="controls"
-        className="flex justify-center absolute w-full h-full bg-dark-gray bg-opacity-30">
+        className="flex justify-center absolute w-full h-full bg-dark-gray bg-opacity-30"
+        ref={controlsRef}>
         <div
-          className="flex flex-row justify-between w-[63%] h-4 md:h-6 absolute bottom-10 select-none"
+          className="flex flex-row justify-between w-3/4 md:w-[58%] h-4 md:h-6 absolute bottom-10 select-none"
           key="time-and-playback-div">
-          <div className="flex flex-row justify-left items-center w-34 md:w-40 h-full">
+          <div className="flex flex-row items-center w-34 md:w-40 h-full">
             <VideoPlayback
               videoRef={videoRef}
               videoStatus={videoStatus}
@@ -44,11 +70,15 @@ export default function VideoPlayerContainer(props: VideoPlayerContainerProps) {
               videoTime={videoTime}
               key="video-time" />
             <VideoVolume
-              videoRef={videoRef} />
+              videoRef={videoRef}
+              videoVolume={videoVolume} />
           </div>
-          <div className="flex flex-row justify-right items-center w-11 md:w-20 h-full">
+          <div className="flex flex-row justify-between items-center w-14 md:w-20 h-full">
             <VideoSettings
-              videoRef={videoRef} />
+              videoRef={videoRef}
+              controlsRef={controlsRef}
+              loopVideo={loopVideo}
+              setLoopVideo={setLoopVideo} />
             <VideoFullscreen
               videoRef={videoRef} />
           </div>
@@ -56,8 +86,7 @@ export default function VideoPlayerContainer(props: VideoPlayerContainerProps) {
 
         <div
           className="flex justify-center items-center absolute bottom-0 w-full h-10"
-          key="seeker-div"
-          id="seeker-div">
+          key="seeker-div">
           <VideoSeeker
             videoRef={videoRef}
             videoTime={videoTime}

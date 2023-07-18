@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useRef, useState } from "react"
 
 type VideoSeekerProps = {
@@ -10,7 +11,7 @@ export default function VideoSeeker(props: VideoSeekerProps) {
   const barRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef<HTMLDivElement>(null)
   const seekerRef = useRef<HTMLDivElement>(null)
-  const [isDraggingSeeker, setIsDraggingSeeker] = useState(false)
+  const [isDraggingSeeker, setIsDraggingSeeker] = useState<boolean>(false)
 
   useEffect(() => {
     const setProgressRefWidth = () => {
@@ -57,7 +58,7 @@ export default function VideoSeeker(props: VideoSeekerProps) {
     if (barRef.current) {
       const barRefStartingX = barRef.current.getBoundingClientRect().left
       if (barRefStartingX) {
-        const newProgressRefX = event.clientX - barRefStartingX - 8
+        const newProgressRefX = event.clientX - barRefStartingX
         moveProgressBar(newProgressRefX)
       }
     }
@@ -67,7 +68,7 @@ export default function VideoSeeker(props: VideoSeekerProps) {
     if (barRef.current) {
       const barRefStartingX = barRef.current.getBoundingClientRect().left
       if (barRefStartingX) {
-        const newProgressRefX = event.touches[0].clientX - barRefStartingX - 8
+        const newProgressRefX = event.touches[0].clientX - barRefStartingX
         moveProgressBar(newProgressRefX)
       }
     }
@@ -88,24 +89,20 @@ export default function VideoSeeker(props: VideoSeekerProps) {
 
   return (
     <div
-      className="flex items-center relative w-[63%] h-1 hover:h-2 hover:cursor-pointer hover:duration-75 bg-seeker-gray rounded-md shadow-md user"
+      className="flex items-center relative w-3/4 md:w-[58%] h-1 hover:h-2 hover:cursor-pointer hover:duration-75 bg-seeker-gray rounded-md shadow-md"
       ref={barRef}
       onMouseDown={(event) => handleMouseEvent(event.nativeEvent)}
-      onTouchStart={(event) => handleTouchEvent(event.nativeEvent)}
-      id="video-progress-div"
-    >
+      onTouchStart={(event) => handleTouchEvent(event.nativeEvent)}>
       <div
-        className="relative h-full bg-red-600 rounded-tl-md rounded-bl-md z-10"
-        ref={progressRef}
-        id="progress-bar"
-      ></div>
+        className="relative h-full bg-red-600 rounded-tl-md rounded-bl-md z-[5]"
+        ref={progressRef}>
+      </div>
       <div
-        className="flex relative h-3 w-3 md:h-4 md:w-4 rounded-full bg-red-600 shadow-[0_0_5px_0_rgba(0,0,0,1)] z-20"
+        className="flex relative h-4 w-4 rounded-full bg-red-600 shadow-[0_0_5px_0_rgba(0,0,0,1)] z-[9]"
         ref={seekerRef}
         onMouseDown={() => setIsDraggingSeeker(true)}
-        onTouchStart={() => setIsDraggingSeeker(true)}
-        id="seeker"
-      ></div>
+        onTouchStart={() => setIsDraggingSeeker(true)}>
+      </div>
     </div>
   )
 }

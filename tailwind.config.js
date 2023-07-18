@@ -41,6 +41,9 @@ module.exports = {
         'cloudy-three': 'cloudy_effect 15s ease-in infinite',
         'cloudy-four': 'cloudy_effect 20s ease-in infinite',
       },
+      fontSize: {
+        xxs: ['.6rem','1rem']
+      },
     },
   },
   plugins: [],

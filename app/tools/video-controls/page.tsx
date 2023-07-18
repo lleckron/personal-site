@@ -45,11 +45,12 @@ export default function VideoControls() {
     )
   }, [])
 
-
   function VideoPlayer() {
-    const [showControls, setShowControls] = useState(false)
+    const [showControls, setShowControls] = useState<boolean>(true)
     const [videoStatus, setVideoStatus] = useState('pause')
     const [videoTime, setVideoTime] = useState<number>(0)
+    const [videoVolume, setVideoVolume] = useState<number>(1)
+    const [loopVideo, setLoopVideo] = useState<boolean>(false)
 
     const handleTimeUpdate = () => {
       if (videoRef.current) {
@@ -57,25 +58,35 @@ export default function VideoControls() {
       }
     }
 
+    const handleVolumeChange = () => {
+      if (videoRef.current) {
+        setVideoVolume(videoRef.current.volume)
+      }
+    }
+
     return (
       <div
         className="flex justify-center relative mt-5 w-full"
         ref={containerRef}
-        onMouseEnter={() => setShowControls(true)}
-        onMouseLeave={() => setShowControls(false)} >
+        /*onMouseEnter={() => setShowControls(true)}
+        onMouseLeave={() => setShowControls(false)}*/ >
         <video
           className='transition-shadow'
           id='ambient-video'
           src='https://leckron-17032.web.app/ambient-480p.mp4'
           ref={videoRef}
-          muted
+          loop={loopVideo}
           playsInline
-          onTimeUpdate={handleTimeUpdate} />
+          onTimeUpdate={handleTimeUpdate}
+          onVolumeChange={handleVolumeChange} />
         {showControls && <VideoPlayerContainer
           videoRef={videoRef}
           videoStatus={videoStatus}
           setVideoStatus={setVideoStatus}
-          videoTime={videoTime} />}
+          videoTime={videoTime}
+          videoVolume={videoVolume}
+          loopVideo={loopVideo}
+          setLoopVideo={setLoopVideo} />}
       </div>
     )
   }

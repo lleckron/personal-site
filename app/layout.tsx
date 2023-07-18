@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-  const [showMenuModal, setShowMenuModal] = useState(false)
+  const [showMenuModal, setShowMenuModal] = useState<boolean>(false)
 
   return (
     <html lang="en">
