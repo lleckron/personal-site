@@ -46,11 +46,13 @@ export default function VideoControls() {
   }, [])
 
   function VideoPlayer() {
-    const [showControls, setShowControls] = useState<boolean>(true)
+    const [showControls, setShowControls] = useState<boolean>(false)
     const [videoStatus, setVideoStatus] = useState('pause')
     const [videoTime, setVideoTime] = useState<number>(0)
     const [videoVolume, setVideoVolume] = useState<number>(1)
     const [loopVideo, setLoopVideo] = useState<boolean>(false)
+    const [currentQuality, setCurrentQuality] = useState<string>('480p')
+    const [currentPlaybackSpeed, setCurrentPlaybackSpeed] = useState<string>('1x')
 
     const handleTimeUpdate = () => {
       if (videoRef.current) {
@@ -68,8 +70,8 @@ export default function VideoControls() {
       <div
         className="flex justify-center relative mt-5 w-full"
         ref={containerRef}
-        /*onMouseEnter={() => setShowControls(true)}
-        onMouseLeave={() => setShowControls(false)}*/ >
+        onMouseEnter={() => setShowControls(true)}
+        onMouseLeave={() => setShowControls(false)} >
         <video
           className='transition-shadow'
           id='ambient-video'
@@ -86,7 +88,11 @@ export default function VideoControls() {
           videoTime={videoTime}
           videoVolume={videoVolume}
           loopVideo={loopVideo}
-          setLoopVideo={setLoopVideo} />}
+          setLoopVideo={setLoopVideo}
+          currentQuality={currentQuality}
+          setCurrentQuality={setCurrentQuality} 
+          currentPlaybackSpeed={currentPlaybackSpeed}
+          setCurrentPlaybackSpeed={setCurrentPlaybackSpeed}/>}
       </div>
     )
   }

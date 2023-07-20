@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect, useRef } from "react"
 import Image, { StaticImageData } from "next/image"
+import { AnimatePresence, motion as m } from "framer-motion"
 import Settings from '../../../public/settings.png'
 import Loop from '../../../public/loop.png'
 import CheckMark from '../../../public/checkmark.png'
@@ -13,6 +14,10 @@ type VideoVolumeProps = {
   controlsRef: React.RefObject<HTMLDivElement>
   loopVideo: boolean
   setLoopVideo: (state: boolean) => void
+  currentQuality: string
+  setCurrentQuality: (quality: string) => void
+  currentPlaybackSpeed: string
+  setCurrentPlaybackSpeed: (speed: string) => void
 }
 
 type SettingsListItemProps = {
@@ -21,11 +26,15 @@ type SettingsListItemProps = {
   imageSrc: StaticImageData
   condition?: boolean
   information?: string
-  expands: boolean
+}
+
+type ExpandedMenuListProps = {
+  toggleFunction: (newValue: string) => void
+  options: Array<string>
 }
 
 export default function VideoSettings(props: VideoVolumeProps) {
-  const { videoRef, controlsRef, loopVideo, setLoopVideo } = props
+  const { videoRef, controlsRef, loopVideo, setLoopVideo, currentQuality, setCurrentQuality, currentPlaybackSpeed, setCurrentPlaybackSpeed } = props
   const [showSettings, setShowSettings] = useState<boolean>(false)
   const [showExpandedMenu, setShowExpandedMenu] = useState<boolean>(false)
   const [expandedMenuType, setExpandedMenuType] = useState<string>('')
@@ -37,6 +46,8 @@ export default function VideoSettings(props: VideoVolumeProps) {
       const targetNode = event.target as Node
       if (controlsRef.current && (targetNode === controlsRef.current || controlsRef.current.contains(targetNode))) {
         setShowSettings(false)
+        setShowExpandedMenu(false)
+        setExpandedMenuType('')
       }
     }
     if (showSettings) {
@@ -49,10 +60,12 @@ export default function VideoSettings(props: VideoVolumeProps) {
   }, [showSettings, controlsRef])
 
   function SettingsMenu() {
+    const qualityOptions = ['480p', '720p', '1080p']
+    const playbackOptions = ['.5', '.75', '1', '1.25', '1.5']
 
     function toggleLoopVideo() {
       setLoopVideo(!loopVideo)
-      setShowSettings(!showSettings)
+      setShowSettings(false)
     }
 
     function toggleExpandMenu(type: string) {
@@ -65,50 +78,64 @@ export default function VideoSettings(props: VideoVolumeProps) {
       }
     }
 
-    function togglePlaybackSpeed(speed: number) {
+    function toggleQuality(quality: string) {
+      console.log(quality)
+      setCurrentQuality(quality)
+      setExpandedMenuType('')
+      setShowExpandedMenu(false)
+    }
+
+    function togglePlaybackSpeed(speed: string) {
+      const newSpeed = speed + 'x'
+
       if (videoRef.current) {
-        videoRef.current.playbackRate = speed
+        videoRef.current.playbackRate = parseFloat(speed)
+        setCurrentPlaybackSpeed(newSpeed)
+        setExpandedMenuType('')
+        setShowExpandedMenu(false)
       }
+
     }
 
     return (
       <div
-        className="absolute bottom-[110%] flex items-center w-28 h-24 md:w-40 md:h-32 bg-gray bg-opacity-40 rounded-md "
+        className="absolute bottom-[110%]"
         ref={settingsRef}>
         {!showExpandedMenu &&
-          <ul className="flex flex-col w-full text-white">
+          <ul className="flex flex-col items-center justify-center text-white w-28 h-24 md:w-40 md:h-32 bg-gray bg-opacity-40 rounded-md">
             <SettingsListItem
               toggleFunction={() => toggleLoopVideo()}
               name='Loop'
               imageSrc={Loop}
-              condition={loopVideo}
-              expands={false} />
+              condition={loopVideo} />
             <SettingsListItem
               toggleFunction={() => toggleExpandMenu('quality')}
               name='Quality'
               imageSrc={Quality}
-              information="480p"
-              expands={true} />
+              information={currentQuality} />
             <SettingsListItem
               toggleFunction={() => toggleExpandMenu('playback')}
               name='Play Speed'
               imageSrc={PlaybackSpeed}
-              information="1x"
-              expands={true} />
+              information={currentPlaybackSpeed} />
           </ul>
         }
-        {(showExpandedMenu && expandedMenuType === 'quality') &&
-          <div>quality bruh</div>
-        }
-        {(showExpandedMenu && expandedMenuType === 'playback') &&
-          <div>playback bruh</div>
-        }
+        {(showExpandedMenu && expandedMenuType === 'quality') && (
+          <ExpandedMenuList
+            toggleFunction={toggleQuality}
+            options={qualityOptions} />
+        )}
+        {(showExpandedMenu && expandedMenuType === 'playback') && (
+          <ExpandedMenuList
+            toggleFunction={togglePlaybackSpeed}
+            options={playbackOptions} />
+        )}
       </div>
     )
   }
 
   function SettingsListItem(props: SettingsListItemProps) {
-    const { toggleFunction, name, imageSrc, condition, information, expands } = props
+    const { toggleFunction, name, imageSrc, condition, information } = props
     return (
       <li
         className="flex justify-center items-center w-full h-7 md:h-9 hover:bg-light-gray hover:bg-opacity-40"
@@ -128,8 +155,25 @@ export default function VideoSettings(props: VideoVolumeProps) {
     )
   }
 
-  function ExpandedMenuListItem() {
-    
+  function ExpandedMenuList(props: ExpandedMenuListProps) {
+    const { toggleFunction, options } = props
+
+    return (
+      <ul
+        className="flex flex-col items-center justify-center relative text-white w-28 h-28 md:w-40 md:h-36 bg-gray bg-opacity-40 rounded-md">
+        {options.map((data: string, index: React.Key) => (
+          <li
+            className="flex justify-center items-center w-full h-7 md:h-9 hover:bg-light-gray hover:bg-opacity-40"
+            key={index}
+            onClick={() => toggleFunction(data)}>
+            {data}{expandedMenuType === 'playback' && <p className="text-white">x</p>}
+          </li>
+        ))}
+        <div 
+        className="absolute flex justify-center items-center text-center text-lg pb-[2px] pr-[2px] left-0 top-0 w-5 h-5 mt-1 rounded-full hover:bg-light-gray hover:bg-opacity-40"
+        onClick={() => {setShowExpandedMenu(false); setExpandedMenuType('')}}>&#x3c;</div>
+      </ul>
+    )
   }
 
   return (

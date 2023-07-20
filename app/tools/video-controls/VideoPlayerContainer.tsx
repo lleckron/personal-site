@@ -16,10 +16,15 @@ type VideoPlayerContainerProps = {
   videoVolume: number
   loopVideo: boolean
   setLoopVideo: (state: boolean) => void
+  currentQuality: string
+  setCurrentQuality: (quality: string) => void
+  currentPlaybackSpeed: string
+  setCurrentPlaybackSpeed: (speed: string) => void
 }
 
 export default function VideoPlayerContainer(props: VideoPlayerContainerProps) {
-  const { videoRef, videoStatus, setVideoStatus, videoTime, videoVolume, loopVideo, setLoopVideo } = props
+  const { videoRef, videoStatus, setVideoStatus, videoTime, videoVolume, loopVideo, setLoopVideo,
+    currentQuality, setCurrentQuality, currentPlaybackSpeed, setCurrentPlaybackSpeed } = props
   const controlsRef = useRef<HTMLDivElement>(null)
 
   const controlsAnimation = {
@@ -78,7 +83,11 @@ export default function VideoPlayerContainer(props: VideoPlayerContainerProps) {
               videoRef={videoRef}
               controlsRef={controlsRef}
               loopVideo={loopVideo}
-              setLoopVideo={setLoopVideo} />
+              setLoopVideo={setLoopVideo}
+              currentQuality={currentQuality}
+              setCurrentQuality={setCurrentQuality}
+              currentPlaybackSpeed={currentPlaybackSpeed}
+              setCurrentPlaybackSpeed={setCurrentPlaybackSpeed} />
             <VideoFullscreen
               videoRef={videoRef} />
           </div>
