@@ -102,7 +102,7 @@ export default function VideoSettings(props: VideoVolumeProps) {
         className="absolute bottom-[110%]"
         ref={settingsRef}>
         {!showExpandedMenu &&
-          <ul className="flex flex-col items-center justify-center text-white w-28 h-24 md:w-40 md:h-32 bg-gray bg-opacity-40 rounded-md">
+          <ul className="flex flex-col items-center justify-center text-white w-32 h-24 md:w-40 md:h-32 bg-gray bg-opacity-40 rounded-md">
             <SettingsListItem
               toggleFunction={() => toggleLoopVideo()}
               name='Loop'
@@ -138,8 +138,10 @@ export default function VideoSettings(props: VideoVolumeProps) {
     const { toggleFunction, name, imageSrc, condition, information } = props
     return (
       <li
-        className="flex justify-center items-center w-full h-7 md:h-9 hover:bg-light-gray hover:bg-opacity-40"
+        className="flex justify-center items-center w-full h-6 md:h-8 hover:bg-light-gray hover:bg-opacity-40"
         onClick={() => toggleFunction()}
+        onKeyDown={(event) => { event.key === 'Enter' && toggleFunction() }}
+        tabIndex={0}
         id={name}>
         <span className="flex flex-row justify-between h-full w-full">
           <span className="flex flex-row justify-center items-center h-full">
@@ -163,15 +165,21 @@ export default function VideoSettings(props: VideoVolumeProps) {
         className="flex flex-col items-center justify-center relative text-white w-28 h-28 md:w-40 md:h-36 bg-gray bg-opacity-40 rounded-md">
         {options.map((data: string, index: React.Key) => (
           <li
-            className="flex justify-center items-center w-full h-7 md:h-9 hover:bg-light-gray hover:bg-opacity-40"
+            className="flex justify-center items-center text-xxs md:text-sm w-full h-5 md:h-8 hover:bg-light-gray hover:bg-opacity-40"
             key={index}
-            onClick={() => toggleFunction(data)}>
+            onClick={() => toggleFunction(data)}
+            onKeyDown={(event) => { event.key === 'Enter' && toggleFunction(data) }}
+            tabIndex={0}>
             {data}{expandedMenuType === 'playback' && <p className="text-white">x</p>}
           </li>
         ))}
-        <div 
-        className="absolute flex justify-center items-center text-center text-lg pb-[2px] pr-[2px] left-0 top-0 w-5 h-5 mt-1 rounded-full hover:bg-light-gray hover:bg-opacity-40"
-        onClick={() => {setShowExpandedMenu(false); setExpandedMenuType('')}}>&#x3c;</div>
+        <div
+          className="absolute flex justify-center items-center text-center text-lg pb-[2px] pr-[2px] left-0 top-0 w-5 h-5 mt-1 rounded-full hover:bg-light-gray hover:bg-opacity-40"
+          onClick={() => { setShowExpandedMenu(false); setExpandedMenuType('') }}
+          onKeyDown={(event) => { event.key === 'Enter' && setShowExpandedMenu(false); setExpandedMenuType('') }}
+          tabIndex={0}>
+          &#x3c;
+        </div>
       </ul>
     )
   }
@@ -184,7 +192,9 @@ export default function VideoSettings(props: VideoVolumeProps) {
         src={Settings}
         alt="settings"
         className="h-full w-full"
-        onClick={() => setShowSettings(true)} />
+        onClick={() => setShowSettings(true)}
+        onKeyDown={(event) => { event.key === 'Enter' && setShowSettings(true) }}
+        tabIndex={0} />
 
       {showSettings && <SettingsMenu />}
     </div>
